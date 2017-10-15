@@ -23,9 +23,9 @@ has action => 'gmake';
 sub init {
   my ($self, $meta) = @_;
 
-  $meta->add_requires( 'share', Alien::premake => '0.001' );
+  $meta->add_requires( 'share', 'Alien::premake' => '0.001' );
   $meta->add_requires( 'configure',
-    Alien::Build::Plugin::Build::Premake => '0.001'
+    'Alien::Build::Plugin::Build::Premake' => '0.001'
   );
 
   $meta->interpolator->add_helper(
