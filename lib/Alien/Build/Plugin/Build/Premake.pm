@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Alien::Build::Plugin::Build::Premake;
+# ABSTRACT: Premake build plugin for Alien::Build
 
 our $VERSION = '0.001';
 
