@@ -42,6 +42,7 @@ sub init {
       }
 
       return join ' ', @cmd;
+    },
   );
 
   $meta->default_hook(
