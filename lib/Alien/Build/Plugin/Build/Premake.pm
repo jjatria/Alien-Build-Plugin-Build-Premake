@@ -34,7 +34,9 @@ sub init {
 
       foreach my $key (qw( cc dc dotnet file os scripts systemscript )) {
         my $val = $self->$key;
-        push @cmd, "--$key=$val" if defined $val;
+        next unless defined $val;
+        next if $key eq 'os' and $val eq $self->os_string;
+        push @cmd, "--$key=$val" if $val;
       }
 
       foreach my $key (qw( fatal insecure )) {
