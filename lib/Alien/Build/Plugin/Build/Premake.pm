@@ -77,3 +77,168 @@ sub os_string {
 }
 
 1;
+
+__END__
+
+=encoding utf8
+
+=head1 NAME
+
+Alien::Build::Plugin::Build::Premake - Premake build plugin for Alien::Build
+
+=head1 SYNOPSIS
+
+    use alienfile;
+    plugin 'Build::Premake';
+
+=head1 DESCRIPTION
+
+This plugin provides tools to build projects that use premake. In particular,
+it adds the C<%{premake}> helper, which can be used in L<alienfile> recipes,
+and adds a default build stage with the following commands:
+
+    '%{premake} ' . $action,
+    '%{make}',
+    '%{make} install',
+
+=head1 OPTIONS
+
+With the exception of the B<action> property, this plugin's options follow
+those of the C<premake5> client. For more information, consult the client's
+documentation.
+
+=over 4
+
+=item B<action>
+
+Specify the action for premake. This defaults to "gmake", but is only really
+used in the default build phase. If you are providing your own build phase,
+then the value of this property will largely be ignored.
+
+For a list of valid actions, check the premake client's documentation.
+
+=back
+
+=head2 Flags
+
+These flags can only be set to true or false. They will be ignored if false.
+
+=over 4
+
+=item B<fatal>
+
+Treat warnings from project scripts as errors.
+
+=item B<insecure>
+
+Forfeit SSH certification checks.
+
+=item B<verbose>
+
+Generate extra debug text output.
+
+=back
+
+=head2 Key / value pairs
+
+=over 4
+
+=item B<os>
+
+Generate files for a different operating system. Valid values are
+"aix", "bsd", "haiku", "hurd", "linux", "macosx", "solaris", or "windows".
+
+=item B<cc>
+
+Choose a C/C++ compiler set. Valid values are "clang" or "gcc".
+
+=item B<dc>
+
+Choose a D compiler. Valid values are "dmd", "gdc", or "ldc".
+
+=item B<dotnet>
+
+ Choose a .NET compiler set. Valid values are "msnet", "mono", or "pnet".
+
+=item B<file>
+
+Read FILE as a Premake script. The default is C<premake5.lua>.
+
+=item B<scripts>
+
+Search for additional scripts on the given path.
+
+=item B<systemscript>
+
+Override default system script (C<premake5-system.lua>).
+
+=back
+
+=head1 METHODS
+
+=over 4
+
+=item B<os_string>
+
+This method provides a mapping between the C<$^O> Perl variable and the
+operating system labels used by premake. The return values are the same as
+those in the list of valid values for the B<os> option.
+
+If the operating system is not supported, or is impossible to determine, the
+returned value will be the empty string.
+
+=back
+
+=head1 HELPERS
+
+=over 4
+
+=item B<premake>
+
+The C<%{premake}> helper is interpolated to the name of the premake client
+(which should be C<premake5>) followed by the options as they were passed
+to the plugin.
+
+Buy default, all options are turned off.
+
+=back
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<https://premake.github.io/>
+
+=back
+
+=head1 CONTRIBUTIONS AND BUG REPORTS
+
+Contributions of any kind are most welcome!
+
+The main repository for this distribution is on
+L<Github|https://github.com/jjatria/Alien-Build-Plugin-Build-Premake>, which is
+where patches and bug reports are mainly tracked. Bug reports can also be sent
+through the CPAN RT system, or by mail directly to the developers at the
+addresses below, although these will not be as closely tracked.
+
+=head1 AUTHOR
+
+=over 4
+
+=item * José Joaquín Atria <jjatria@cpan.org>
+
+=back
+
+=head1 ACKNOWLEDGEMENTS
+
+Special thanks to Graham Ollis for his help in the preparation of this
+distribution.
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2017 by José Joaquín Atria.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
