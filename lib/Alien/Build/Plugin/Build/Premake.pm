@@ -17,6 +17,7 @@ has file         => sub { undef };
 has insecure     => sub { undef };
 has scripts      => sub { undef };
 has systemscript => sub { undef };
+has verbose      => sub { undef };
 
 has action => 'gmake';
 
@@ -39,7 +40,7 @@ sub init {
         push @cmd, "--$key=$val" if $val;
       }
 
-      foreach my $key (qw( fatal insecure )) {
+      foreach my $key (qw( fatal insecure verbose )) {
         push @cmd, "--$key" if defined $self->$key;
       }
 
