@@ -55,4 +55,22 @@ sub init {
 
 }
 
+sub os_string {
+  my ($self) = shift;
+
+  my $os = '';
+  for ($^O) {
+       if (/aix/i)     { $os = 'aix' }
+    elsif (/bsd/i)     { $os = 'bsd' }
+    elsif (/darwin/i)  { $os = 'macosx' }
+    elsif (/haiku/i)   { $os = 'haiku' }
+    elsif (/hurd/i)    { $os = 'hurd' }
+    elsif (/linux/i)   { $os = 'linux' }
+    elsif (/mswin32/i) { $os = 'windows' }
+    elsif (/solaris/i) { $os = 'solaris' }
+  }
+
+  return $os;
+}
+
 1;
