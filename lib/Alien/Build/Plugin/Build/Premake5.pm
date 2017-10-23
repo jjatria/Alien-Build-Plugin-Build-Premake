@@ -29,6 +29,8 @@ sub init {
     'Alien::Build::Plugin::Build::Premake5' => '0.001'
   );
 
+  $meta->apply_plugin( 'Build::Make', make_type => 'gmake' );
+
   $meta->interpolator->replace_helper(
     premake5 => sub {
       require Alien::premake5;
@@ -101,6 +103,10 @@ and adds a default build stage with the following commands:
     '%{premake5} ' . $action,
     '%{make}',
     '%{make} install',
+
+Since premake5 requires gmake, loading this plugin will also load the
+L<Build::Make|https://metacpan.org/pod/Alien::Build::Plugin::Build::Make>
+plugin with its C<make_type> option set to "gmake".
 
 =head1 OPTIONS
 
