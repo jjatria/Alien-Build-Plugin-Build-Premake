@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 
-package Alien::Build::Plugin::Build::Premake;
-# ABSTRACT: Premake build plugin for Alien::Build
+package Alien::Build::Plugin::Build::Premake5;
+# ABSTRACT: Premake5 build plugin for Alien::Build
 
 our $VERSION = '0.001';
 
@@ -24,14 +24,15 @@ has action => 'gmake';
 sub init {
   my ($self, $meta) = @_;
 
-  $meta->add_requires( 'share', 'Alien::premake' => '0.001' );
+  $meta->add_requires( 'share', 'Alien::premake5' => '0.001' );
   $meta->add_requires( 'configure',
-    'Alien::Build::Plugin::Build::Premake' => '0.001'
+    'Alien::Build::Plugin::Build::Premake5' => '0.001'
   );
 
-  $meta->interpolator->add_helper(
-    premake => sub {
-      my @cmd = 'premake5';
+  $meta->interpolator->replace_helper(
+    premake5 => sub {
+      require Alien::premake5;
+      my @cmd = Alien::premake5->exe;
 
       foreach my $key (qw( cc dc dotnet file os scripts systemscript )) {
         my $val = $self->$key;
@@ -50,7 +51,7 @@ sub init {
 
   $meta->default_hook(
     build => [
-      '%{premake} ' . $self->action,
+      '%{premake5} ' . $self->action,
       '%{make}',
       '%{make} install',
     ]
@@ -84,20 +85,20 @@ __END__
 
 =head1 NAME
 
-Alien::Build::Plugin::Build::Premake - Premake build plugin for Alien::Build
+Alien::Build::Plugin::Build::Premake5 - Premake5 build plugin for Alien::Build
 
 =head1 SYNOPSIS
 
     use alienfile;
-    plugin 'Build::Premake';
+    plugin 'Build::Premake5';
 
 =head1 DESCRIPTION
 
-This plugin provides tools to build projects that use premake. In particular,
-it adds the C<%{premake}> helper, which can be used in L<alienfile> recipes,
+This plugin provides tools to build projects that use premake5. In particular,
+it adds the C<%{premake5}> helper, which can be used in L<alienfile> recipes,
 and adds a default build stage with the following commands:
 
-    '%{premake} ' . $action,
+    '%{premake5} ' . $action,
     '%{make}',
     '%{make} install',
 
@@ -111,11 +112,11 @@ documentation.
 
 =item B<action>
 
-Specify the action for premake. This defaults to "gmake", but is only really
+Specify the action for premake5. This defaults to "gmake", but is only really
 used in the default build phase. If you are providing your own build phase,
 then the value of this property will largely be ignored.
 
-For a list of valid actions, check the premake client's documentation.
+For a list of valid actions, check the premake5 client's documentation.
 
 =back
 
@@ -162,7 +163,7 @@ Choose a D compiler. Valid values are "dmd", "gdc", or "ldc".
 
 =item B<file>
 
-Read FILE as a Premake script. The default is C<premake5.lua>.
+Read FILE as a premake5 script. The default is C<premake5.lua>.
 
 =item B<scripts>
 
@@ -181,7 +182,7 @@ Override default system script (C<premake5-system.lua>).
 =item B<os_string>
 
 This method provides a mapping between the C<$^O> Perl variable and the
-operating system labels used by premake. The return values are the same as
+operating system labels used by premake5. The return values are the same as
 those in the list of valid values for the B<os> option.
 
 If the operating system is not supported, or is impossible to determine, the
@@ -193,11 +194,10 @@ returned value will be the empty string.
 
 =over 4
 
-=item B<premake>
+=item B<premake5>
 
-The C<%{premake}> helper is interpolated to the name of the premake client
-(which should be C<premake5>) followed by the options as they were passed
-to the plugin.
+The C<%{premake5}> helper is interpolated to the name of the premake5 client
+followed by the options as they were passed to the plugin.
 
 Buy default, all options are turned off.
 
@@ -216,7 +216,7 @@ Buy default, all options are turned off.
 Contributions of any kind are most welcome!
 
 The main repository for this distribution is on
-L<Github|https://github.com/jjatria/Alien-Build-Plugin-Build-Premake>, which is
+L<Github|https://github.com/jjatria/Alien-Build-Plugin-Build-Premake5>, which is
 where patches and bug reports are mainly tracked. Bug reports can also be sent
 through the CPAN RT system, or by mail directly to the developers at the
 addresses below, although these will not be as closely tracked.
