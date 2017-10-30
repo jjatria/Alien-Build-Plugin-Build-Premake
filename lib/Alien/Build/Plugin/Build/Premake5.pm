@@ -4,7 +4,7 @@ use warnings;
 package Alien::Build::Plugin::Build::Premake5;
 # ABSTRACT: Premake5 build plugin for Alien::Build
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use Alien::Build::Plugin;
 
