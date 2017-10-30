@@ -104,7 +104,7 @@ This plugin provides tools to build projects that use premake5. In particular,
 it adds the C<%{premake5}> helper, which can be used in L<alienfile> recipes,
 and adds a default build stage with the following commands:
 
-    '%{premake5} ' . $action,
+    '%{premake} ' . $action,
     '%{make}',
     '%{make} install',
 
@@ -204,10 +204,14 @@ returned value will be the empty string.
 
 =over 4
 
+=item B<premake>
+
 =item B<premake5>
 
-The C<%{premake5}> helper is interpolated to the name of the premake5 client
-followed by the options as they were passed to the plugin.
+The C<%{premake5}> is defined by L<Alien::premake5> to be the executable of
+premake client. This plugin replaces that helper to include any options as
+they were passed to the plugin. It also defines a convenience C<%{premake}>
+helper, with the same content.
 
 Buy default, all options are turned off.
 

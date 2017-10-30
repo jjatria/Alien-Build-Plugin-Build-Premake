@@ -13,9 +13,13 @@ This plugin provides tools to build projects that use premake5. In particular,
 it adds the `%{premake5}` helper, which can be used in [alienfile](https://metacpan.org/pod/alienfile) recipes,
 and adds a default build stage with the following commands:
 
-    '%{premake5} ' . $action,
+    '%{premake} ' . $action,
     '%{make}',
     '%{make} install',
+
+Since premake5 requires gmake, loading this plugin will also load the
+[Build::Make](https://metacpan.org/pod/Alien::Build::Plugin::Build::Make)
+plugin with its `make_type` option set to "gmake".
 
 # OPTIONS
 
@@ -91,10 +95,13 @@ These flags can only be set to true or false. They will be ignored if false.
 
 # HELPERS
 
+- **premake**
 - **premake5**
 
-    The `%{premake5}` helper is interpolated to the name of the premake5 client
-    followed by the options as they were passed to the plugin.
+    The `%{premake5}` is defined by [Alien::premake5](https://metacpan.org/pod/Alien::premake5) to be the executable of
+    premake client. This plugin replaces that helper to include any options as
+    they were passed to the plugin. It also defines a convenience `%{premake}`
+    helper, with the same content.
 
     Buy default, all options are turned off.
 
