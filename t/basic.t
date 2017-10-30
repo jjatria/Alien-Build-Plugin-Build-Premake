@@ -1,12 +1,12 @@
 use Test2::V0;
 use Test::Alien::Build;
-use Alien::Build::Plugin::Build::Premake;
+use Alien::Build::Plugin::Build::Premake5;
 use Path::Tiny qw( path );
 
 subtest 'basic' => sub {
-  my $plugin = Alien::Build::Plugin::Build::Premake->new;
+  my $plugin = Alien::Build::Plugin::Build::Premake5->new;
   isa_ok $plugin, 'Alien::Build::Plugin';
-  isa_ok $plugin, 'Alien::Build::Plugin::Build::Premake';
+  isa_ok $plugin, 'Alien::Build::Plugin::Build::Premake5';
 
   my $build = alienfile_ok q{ use alienfile };
   my $meta = $build->meta;
@@ -35,7 +35,7 @@ subtest 'basic' => sub {
 };
 
 subtest 'options' => sub {
-  my $plugin = Alien::Build::Plugin::Build::Premake->new(
+  my $plugin = Alien::Build::Plugin::Build::Premake5->new(
     cc           => 'gcc',
     dc           => 'gdc',
     dotnet       => 'mono',
