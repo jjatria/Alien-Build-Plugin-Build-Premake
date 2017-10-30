@@ -51,6 +51,10 @@ sub init {
     },
   );
 
+  $meta->interpolator->add_helper(
+    premake => $meta->interpolator->has_helper('premake5'),
+  );
+
   $meta->default_hook(
     build => [
       '%{premake5} ' . $self->action,
