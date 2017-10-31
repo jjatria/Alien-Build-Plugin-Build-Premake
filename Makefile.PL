@@ -23,12 +23,11 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Alien::Build::Plugin::Build::Premake" => 0,
     "Path::Tiny" => 0,
     "Test2::V0" => 0,
     "Test::Alien::Build" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -37,7 +36,6 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Alien::Build::Plugin" => 0,
-  "Alien::Build::Plugin::Build::Premake" => 0,
   "Alien::premake5" => 0,
   "Path::Tiny" => 0,
   "Test2::V0" => 0,

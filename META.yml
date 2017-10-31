@@ -3,7 +3,6 @@ abstract: 'Premake5 build plugin for Alien::Build'
 author:
   - 'José Joaquín Atria <jjatria@cpan.org>'
 build_requires:
-  Alien::Build::Plugin::Build::Premake: '0'
   Path::Tiny: '0'
   Test2::V0: '0'
   Test::Alien::Build: '0'
@@ -21,7 +20,7 @@ name: Alien-Build-Plugin-Build-Premake5
 provides:
   Alien::Build::Plugin::Build::Premake5:
     file: lib/Alien/Build/Plugin/Build/Premake5.pm
-    version: '0.001'
+    version: '0.002'
 requires:
   Alien::Build::Plugin: '0'
   Alien::premake5: '0'
@@ -31,5 +30,5 @@ requires:
 resources:
   bugtracker: https://github.com/jjatria/Alien-Build-Plugin-Build-Premake5/issues
   repository: git://github.com/jjatria/Alien-Build-Plugin-Build-Premake5.git
-version: '0.001'
+version: '0.002'
 x_serialization_backend: 'YAML::Tiny version 1.70'

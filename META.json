@@ -36,7 +36,6 @@
       },
       "test" : {
          "requires" : {
-            "Alien::Build::Plugin::Build::Premake" : "0",
             "Path::Tiny" : "0",
             "Test2::V0" : "0",
             "Test::Alien::Build" : "0",
@@ -47,7 +46,7 @@
    "provides" : {
       "Alien::Build::Plugin::Build::Premake5" : {
          "file" : "lib/Alien/Build/Plugin/Build/Premake5.pm",
-         "version" : "0.001"
+         "version" : "0.002"
       }
    },
    "release_status" : "stable",
@@ -62,7 +61,7 @@
          "web" : "https://github.com/jjatria/Alien-Build-Plugin-Build-Premake5"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0237"
 }
 
