@@ -18,7 +18,6 @@ env:
     - RELEASE_TESTING=1
     - AUTHOR_TESTING=1
 before_install:
-  - if [ "$TRAVIS_BRANCH" == "build"  ]; then rm -f dist.ini; fi
   - eval $(curl https://travis-perl.github.io/init) --auto
   - cpanm -n App::af
   - af missing | cpanm
