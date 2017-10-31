@@ -19,5 +19,5 @@ env:
     - AUTHOR_TESTING=1
 before_install:
   - eval $(curl https://travis-perl.github.io/init) --auto
-  - cpanm -n App::af
-  - af missing | cpanm
+  - cpanm -nq App::af
+  - af missing | cpanm -nq
